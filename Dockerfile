@@ -16,8 +16,9 @@ COPY --chmod=755 railway-start.sh /opt/railway/railway-start.sh
 ENV HERMES_DASHBOARD=1 \
     HERMES_DASHBOARD_HOST=0.0.0.0
 
+# Hermes keeps all state in /opt/data: attach a Railway volume there
+# (Railway volumes replace Dockerfile VOLUME declarations).
 EXPOSE 9119
-VOLUME ["/opt/data"]
 
 ENTRYPOINT ["/opt/railway/railway-start.sh"]
 CMD ["gateway", "run"]
